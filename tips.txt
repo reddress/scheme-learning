@@ -1,0 +1,11 @@
+;;; Guile
+(use-modules (srfi srfi-1))  ;; for fold
+
+(use-modules (srfi srfi-9))  ;; for records
+
+(use-modules (oop goops))    ;; for (class-of x)
+
+
+;;; Chicken current working directory
+(use posix)
+(current-directory)

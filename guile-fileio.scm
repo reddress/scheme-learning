@@ -18,8 +18,8 @@
  (with-input-from-file
      (string-append PATH "chicken-infile.txt")
    (lambda ()
-     (let lp ((text "")  ;; named let
+     (let loop ((text "")  ;; named let
               (line (read-line)))
        (if (eof-object? line) text
-           (lp (string-append text line "\n")
+           (loop (string-append text line "\n")
                (read-line)))))))
