@@ -1,0 +1,2 @@
+using macroline 2
+after newline
