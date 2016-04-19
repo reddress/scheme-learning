@@ -6,7 +6,7 @@
 
 (define base-dir #f)
 
-(if (equal? (substring (vector-ref (uname) 0) 0 6) "CYGWIN")
+(if (equal? (substring (vector-ref (uname) 0) 0 3) "CYG")
     (set! base-dir "/cygdrive/c/Users/Heitor/Desktop/emacs-24.3/bin/scheme-learning/out/")
     (set! base-dir "/home/heitor/scheme-learning/out/"))
 
