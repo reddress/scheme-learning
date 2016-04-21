@@ -26,3 +26,30 @@
      (with-output-to-file (base-file filename)
        (lambda ()
          body ...)))))
+
+
+;;; http://www.gnu.org/software/guile/manual/html_node/SRFI_002d9-Records.html#SRFI_002d9-Records
+
+;; (define-record-type <employee>
+;;   (make-employee name age salary)
+;;   employee?
+;;   (name employee-name)
+;;   (age employee-age set-employee-age!)
+;;   (salary employee-salary set-employee-salary!))
+
+(define (symbol-concat . syms)
+  (let ((strs (map symbol->string syms)))
+    (string->symbol (apply string-append strs))))
+
+(define (field-to-full-spec type-name field-name)
+  (list field-name
+        (symbol-concat type-name '- field-name)
+        (symbol-concat 'set- type-name '- field-name '!)))
+
+(define-macro (generic-record-type type-name . field-names)
+  `(define-record-type ,type-name
+     (,(symbol-concat 'make '- type-name) ,@field-names)
+     ,(symbol-concat type-name '?)
+     ,@(map
+        (lambda (field-name) (field-to-full-spec type-name field-name))
+        field-names)))
