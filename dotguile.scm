@@ -53,3 +53,10 @@
      ,@(map
         (lambda (field-name) (field-to-full-spec type-name field-name))
         field-names)))
+
+(define-syntax repeat
+  (syntax-rules ()
+    ((repeat n body ...)
+     (do ((j 1 (+ j 1)))
+         ((> j n))
+       body ...))))
